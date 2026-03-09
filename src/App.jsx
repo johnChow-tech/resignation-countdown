@@ -4,11 +4,11 @@ import './App.scss';
 import './index.css';
 
 function App() {
-  const [resignationDate, setResignationDate] = useState('2026-12-31');
+  const [resignationDate, setResignationDate] = useState('2026-03-31');
   const [workStart, setWorkStart] = useState('09:30');
   const [workEnd, setWorkEnd] = useState('18:30');
   // New State for Paid Time Off (PTO)
-  const [ptoDays, setPtoDays] = useState(0);
+  const [ptoDays, setPtoDays] = useState(3);
 
   const targetDateTime = `${resignationDate}T${workEnd}:00`;
 

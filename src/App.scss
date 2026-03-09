@@ -1,83 +1,122 @@
-// Theme Variables
-$primary-text: #2c3e50;
-$secondary-text: #576574;
-$border-color: #dcdde1;
-$focus-color: #007bff;
-$bg-color: #ffffff;
-$shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+@import './index.css';
 
 .app-main {
-  max-width: 900px; // Expanded slightly to fit 4 grid columns beautifully
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 3rem 2rem;
-  // Added CJK (Chinese/Japanese/Korean) font fallbacks for better rendering
-  font-family:
-    'Inter',
-    -apple-system,
-    'PingFang SC',
-    'Microsoft YaHei',
-    sans-serif;
+  padding: 4rem 2rem;
+  // Enforce uppercase for Soviet propaganda poster style
+  text-transform: uppercase;
 
   .app-header {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    border-bottom: var(--brutalist-border);
+    padding-bottom: 2rem;
 
     h1 {
-      color: $primary-text;
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      letter-spacing: 2px;
+      color: var(--color-text-main);
+      font-size: 3.5rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      background-color: var(--color-primary);
+      color: white;
+      display: inline-block;
+      padding: 0.5rem 2rem;
+      // Slight agitation for the brutalist feel
+      transform: rotate(-1deg);
+      box-shadow: var(--brutalist-shadow);
     }
 
     h2 {
-      color: $secondary-text;
-      font-size: 1.1rem;
-      font-weight: 400;
-      letter-spacing: 1px;
+      color: var(--color-text-main);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    // RWD: Scale down massive titles on mobile
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+        padding: 0.5rem 1rem;
+        transform: rotate(0deg); // Flatten on smaller screens
+      }
+      h2 {
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
     }
   }
 
   .settings-panel {
-    // Using CSS Grid for robust alignment of exactly 4 input groups
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
+    // FIX: Replace '1fr' with 'minmax(0, 1fr)' to force strict equal widths
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
 
-    background-color: $bg-color;
-    padding: 2rem;
-    border-radius: 16px;
-    box-shadow: $shadow;
-    margin-bottom: 3rem;
+    background-color: var(--color-panel-bg);
+    padding: 0;
+    border: var(--brutalist-border);
+    box-shadow: var(--brutalist-shadow);
+    margin-bottom: 4rem;
+
+    // RWD: Tablet falls back to 2x2 grid
+    @media (max-width: 768px) {
+      // FIX: Apply the same strict minmax here
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    // RWD: Mobile phones fall back to 1x4 stacked column
+    @media (max-width: 500px) {
+      // Keep this at 500px as discussed to prevent overlap
+      grid-template-columns: 1fr;
+    }
 
     .input-group {
       display: flex;
       flex-direction: column;
+      border: 1px solid var(--color-border); // Thin inner grid lines
+      padding: 1.5rem;
 
       label {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: lighten($primary-text, 15%);
-        margin-bottom: 0.6rem;
+        font-size: 0.8rem;
+        font-weight: 900;
+        color: var(--color-panel-bg);
+        margin-bottom: 1rem;
+        background-color: var(--color-border);
+        padding: 0.2rem 0.5rem;
+        align-self: flex-start;
       }
 
       input {
-        padding: 0.8rem 1rem;
-        font-size: 1rem;
-        border: 2px solid transparent; // Pre-allocate border to prevent layout shift
-        box-shadow: 0 0 0 1px $border-color;
-        border-radius: 8px;
-        color: $primary-text;
-        transition: all 0.2s ease;
+        padding: 0.8rem;
+        font-size: 1.1rem;
+        border: 2px solid var(--color-border);
+        background-color: white;
+        color: var(--color-text-main);
+        transition: none; // Harsh state changes
         font-family: inherit;
+        font-weight: bold;
 
         &:focus {
           outline: none;
-          box-shadow: 0 0 0 1px transparent;
-          border-color: $focus-color;
-          // Inner glow for accessibility
-          box-shadow: 0 0 0 3px rgba($focus-color, 0.15);
+          background-color: #ffcccc; // Light red tint for focus
+          border-color: var(--color-primary);
         }
+
+        &[type='date'],
+        &[type='time'],
+        &[type='number'] {
+          text-align: center;
+        }
+        width: 100%;
+        min-width: 0;
       }
     }
   }

@@ -25,11 +25,10 @@ const CountdownTimer = ({ targetDate, workStart = '09:30', workEnd = '18:30', pt
       {!isFinished && (
         <h2 className="timer-title" data-testid="timer-title">
           {timeData.isWorkingHours ? (
-            <span className="status-active">🟢</span>
+            <span className="status-active">距离解放还有...</span>
           ) : (
-            <span className="status-frozen">❄️</span>
+            <span className="status-frozen">下班时间</span>
           )}
-          距离解放还有...
         </h2>
       )}
 

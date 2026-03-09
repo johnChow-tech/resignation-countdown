@@ -1,65 +1,57 @@
 /* =========================================
-   Global CSS Reset & Base Styles
+   Soviet Retro Global Base Styles
    ========================================= */
 
 :root {
-  font-family:
-    'Inter',
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
+  /* Strict Constructivist Palette */
+  --color-bg: #e0e0e0; /* Industrial Concrete Grey */
+  --color-panel-bg: #f5f5f5; /* Aged Paper */
+  --color-primary: #cc0000; /* Kremlin Red */
+  --color-text-main: #1a1a1a; /* Coal Black */
+  --color-border: #333333; /* Heavy Metal */
+  --color-accent: #cc0000;
 
-  /* Global Background Color */
-  background-color: #f4f7f6;
+  /* Typography - Bold, Geometric, Uppercase feeling */
+  font-family: 'Anton', 'Arial Black', 'Helvetica Inserat', 'Inter', sans-serif;
+  line-height: 1.2;
+  color-scheme: light;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+
+  /* Soviet Aesthetic: No rounded corners, heavy lines */
+  --brutalist-border: 3px solid var(--color-border);
+  --brutalist-shadow: 6px 6px 0px rgba(0, 0, 0, 0.8);
 }
 
-/* 1. Reset margin and padding globally */
+/* Base Reset */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  /* Universally remove rounded corners */
+  border-radius: 0 !important;
 }
 
-/* 2. Standardize body behavior */
 body {
   min-width: 320px;
-  min-height: 100vh; /* Ensure body takes at least full viewport height */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  /* Prevent scrollbar jumping on Windows */
+  min-height: 100vh;
+  -webkit-font-smoothing: none; /* Intentionally aliased for retro feel */
+  -moz-osx-font-smoothing: unset;
   overflow-y: scroll;
+  /* Subltle paper/noise texture */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%239C92AC' fill-opacity='0.1' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 
-/* 3. The React Mounting Node */
 #root {
-  width: 100%; /* Critical: Forces root to span the entire screen */
+  width: 100%;
   min-height: 100vh;
   display: block;
 }
 
-/* 4. Improve media defaults */
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-}
-
-/* 5. Remove built-in form typography styles */
-input,
-button,
-textarea,
-select {
-  font: inherit;
+/* Red Star List Style (Optional extra) */
+ul {
+  list-style: '★ ';
+  color: var(--color-primary);
 }
