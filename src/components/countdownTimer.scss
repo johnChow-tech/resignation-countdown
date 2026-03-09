@@ -1,0 +1,98 @@
+// Variables for easy theme management
+$primary-text: #2c3e50;
+$accent-color: #007bff;
+$bg-color: #ffffff;
+$shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+
+.countdown-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  background-color: $bg-color;
+  border-radius: 16px;
+  box-shadow: $shadow;
+  font-family:
+    'Inter',
+    -apple-system,
+    sans-serif;
+  margin: 2rem auto;
+  max-width: 600px;
+  // Smooth transition for state changes (Active <-> Frozen)
+  transition:
+    background-color 0.5s ease,
+    box-shadow 0.5s ease;
+
+  // State: Frozen (Off-hours / Weekends)
+  &.is-frozen {
+    background-color: #eef2f5;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+
+    .timer-display .time-block .value {
+      color: #7f8c8d; // Dim the numbers when frozen to indicate inactivity
+    }
+  }
+
+  .timer-title {
+    color: $primary-text;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .status-badge {
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.05);
+
+    .status-active {
+      color: #28a745; // Green for working/counting
+    }
+
+    .status-frozen {
+      color: #3498db; // Blue for resting/frozen
+    }
+  }
+
+  .timer-display {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .time-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 80px;
+
+      .value {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: $accent-color;
+        // Tabular nums prevent horizontal jitter during countdown
+        font-variant-numeric: tabular-nums;
+        transition: color 0.5s ease;
+      }
+
+      .label {
+        font-size: 0.85rem;
+        color: lighten($primary-text, 30%);
+        letter-spacing: 2px;
+        margin-top: 0.5rem;
+      }
+    }
+
+    .finished-msg {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #28a745;
+      text-align: center;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+$primary-text: #2c3e50;
+$border-color: #dcdde1;
+$focus-color: #007bff;
+$bg-color: #ffffff;
+
+.app-main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family:
+    'Inter',
+    -apple-system,
+    sans-serif;
+
+  .app-header {
+    text-align: center;
+    color: $primary-text;
+    margin-bottom: 3rem;
+  }
+
+  .settings-panel {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    background-color: $bg-color;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 150px;
+
+      label {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: lighten($primary-text, 20%);
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      input {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        color: $primary-text;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        font-family: inherit;
+
+        &:focus {
+          outline: none;
+          border-color: $focus-color;
+          box-shadow: 0 0 0 3px rgba($focus-color, 0.1);
+        }
+      }
+    }
+  }
+}
