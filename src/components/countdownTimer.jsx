@@ -9,7 +9,7 @@ const CountdownTimer = ({ targetDate, workStart = '09:30', workEnd = '18:30', pt
     const timer = setInterval(() => {
       const newData = calculateWorkingTimeLeft(targetDate, workStart, workEnd, ptoDays);
       setTimeData(newData);
-      
+
       if (newData.days === 0 && newData.hours === 0 && newData.minutes === 0 && newData.seconds === 0) {
         clearInterval(timer);
       }
@@ -22,19 +22,18 @@ const CountdownTimer = ({ targetDate, workStart = '09:30', workEnd = '18:30', pt
 
   return (
     <div className={`countdown-container ${!timeData.isWorkingHours && !isFinished ? 'is-frozen' : ''}`} data-testid="timer-wrapper">
-      <h2 className="timer-title" data-testid="timer-title">
-        Time Remaining Until Freedom
-      </h2>
-      
       {!isFinished && (
-        <div className="status-badge" data-testid="status-badge">
+        <h2 className="timer-title" data-testid="timer-title">
           {timeData.isWorkingHours ? (
-            <span className="status-active">🟢 Working (Counting Down)</span>
+            <span className="status-active">🟢</span>
           ) : (
-            <span className="status-frozen">❄️ Off-Hours (Timer Frozen)</span>
+            <span className="status-frozen">❄️</span>
           )}
-        </div>
+          距离解放还有...
+        </h2>
       )}
+
+
 
       <div className="timer-display" data-testid="timer-display">
         {!isFinished ? (
@@ -48,7 +47,8 @@ const CountdownTimer = ({ targetDate, workStart = '09:30', workEnd = '18:30', pt
           ))
         ) : (
           <div className="finished-msg" data-testid="freedom-msg">
-            Target Reached. Ready for Tokyo!
+            🎉恭喜你🎉<br />
+            感谢你常年的付出！
           </div>
         )}
       </div>

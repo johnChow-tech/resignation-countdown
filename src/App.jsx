@@ -15,61 +15,62 @@ function App() {
   return (
     <main className="app-main" data-testid="app-main">
       <header className="app-header">
-        <h1>Operation: Next Chapter</h1>
+        <h1>我还要忍多久...</h1>
+        <h2>计算辞职后剩余上班时间的跑路计时器</h2>
       </header>
-      
+
       <section className="settings-panel" data-testid="settings-panel">
         <div className="input-group">
-          <label htmlFor="resignation-date">Resignation Date</label>
-          <input 
+          <label htmlFor="resignation-date">离职日</label>
+          <input
             id="resignation-date"
-            type="date" 
-            value={resignationDate} 
+            type="date"
+            value={resignationDate}
             onChange={(e) => setResignationDate(e.target.value)}
             data-testid="input-resignation-date"
           />
         </div>
 
         <div className="input-group">
-          <label htmlFor="pto-days">Paid Leave (Days)</label>
-          <input 
-            id="pto-days"
-            type="number" 
-            min="0"
-            step="0.5"
-            value={ptoDays} 
-            onChange={(e) => setPtoDays(e.target.value)}
-            data-testid="input-pto-days"
-            placeholder="e.g. 10"
-          />
-        </div>
-
-        <div className="input-group">
-          <label htmlFor="work-start">Work Start</label>
-          <input 
+          <label htmlFor="work-start">上班时间</label>
+          <input
             id="work-start"
-            type="time" 
-            value={workStart} 
+            type="time"
+            value={workStart}
             onChange={(e) => setWorkStart(e.target.value)}
             data-testid="input-work-start"
           />
         </div>
 
         <div className="input-group">
-          <label htmlFor="work-end">Work End</label>
-          <input 
+          <label htmlFor="work-end">下班时间</label>
+          <input
             id="work-end"
-            type="time" 
-            value={workEnd} 
+            type="time"
+            value={workEnd}
             onChange={(e) => setWorkEnd(e.target.value)}
             data-testid="input-work-end"
+          />
+        </div>
+
+        <div className="input-group">
+          <label htmlFor="pto-days">带薪假（天数）</label>
+          <input
+            id="pto-days"
+            type="number"
+            min="0"
+            step="0.5"
+            value={ptoDays}
+            onChange={(e) => setPtoDays(e.target.value)}
+            data-testid="input-pto-days"
+            placeholder="e.g. 10"
           />
         </div>
       </section>
 
       <section className="timer-section">
-        <CountdownTimer 
-          targetDate={targetDateTime} 
+        <CountdownTimer
+          targetDate={targetDateTime}
           workStart={workStart}
           workEnd={workEnd}
           ptoDays={ptoDays}
