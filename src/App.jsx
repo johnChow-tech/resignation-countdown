@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import CountdownTimer from './components/CountdownTimer';
+import CountdownTimer from './components/countdownTimer';
 import './App.scss';
 import './index.css';
 

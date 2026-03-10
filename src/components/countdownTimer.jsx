@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { calculateWorkingTimeLeft } from '../utils/timeCalculator';
-import './CountdownTimer.scss';
+import './countdownTimer.scss';
 
 const CountdownTimer = ({ targetDate, workStart = '09:30', workEnd = '18:30', ptoDays = 0 }) => {
   const [timeData, setTimeData] = useState(() => calculateWorkingTimeLeft(targetDate, workStart, workEnd, ptoDays));
