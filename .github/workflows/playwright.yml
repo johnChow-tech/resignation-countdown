@@ -1,37 +1,25 @@
 name: Playwright Tests
 
-# 必须保留触发器！告诉 GitHub 什么时候运行测试
 on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+  workflow_call: # 【核心魔法】：声明这是一个可被别人调用的子模块
 
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-
-    # 你的高阶 Docker 加速魔法
     container:
       image: mcr.microsoft.com/playwright:v1.58.2-jammy
-
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
-
       - name: Install dependencies
         run: npm ci
-
       - name: Run Playwright tests
         run: npx playwright test
-        # FIX: 注入环境变量，强行将 HOME 目录重定向给 root，绕过 Firefox 的安全沙盒检查
         env:
           HOME: /root
-
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:

@@ -1,0 +1,29 @@
+name: Main CI/CD Orchestrator
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+# 必须在主控文件里赋予最高权限，才能透传给子模块进行部署
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  # 任务 1：呼叫测试子模块
+  e2e-testing:
+    uses: ./.github/workflows/playwright.yml
+
+  # 任务 2：呼叫部署子模块 (严格依赖任务 1)
+  production-deployment:
+    needs: e2e-testing
+    # 依然保持门禁：只有直接 push 代码到 main 才会触发部署
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    uses: ./.github/workflows/deploy.yml
