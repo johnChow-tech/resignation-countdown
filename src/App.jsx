@@ -8,7 +8,7 @@ function App() {
   const [workStart, setWorkStart] = useState('09:30');
   const [workEnd, setWorkEnd] = useState('18:30');
   // New State for Paid Time Off (PTO)
-  const [ptoDays, setPtoDays] = useState(3);
+  const [ptoDays, setPtoDays] = useState(4);
 
   const targetDateTime = `${resignationDate}T${workEnd}:00`;
 

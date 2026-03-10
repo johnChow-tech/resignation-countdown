@@ -79,18 +79,19 @@
 
   .timer-display {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    // 桌面端：3列并排
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     width: 100%;
 
-    // BRUTALIST GRID BORDER HACK:
-    // Container is black, gap is 2px. White items inside will create perfect black borders.
+    // BRUTALIST GRID BORDER HACK 持续生效
     background-color: var(--color-border);
     border: var(--brutalist-border);
     gap: 2px;
 
-    // RWD: Switch to 2x2 grid on mobile screens
-    @media (max-width: 600px) {
-      grid-template-columns: repeat(2, 1fr);
+    // RWD: FIX -> 手机端降维打击，转为垂直 1 列排列。
+    // 黑色的 gap 会自动变成工业感十足的水平分割线。
+    @media (max-width: 500px) {
+      grid-template-columns: 1fr;
     }
 
     .time-block {

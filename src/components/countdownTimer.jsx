@@ -18,7 +18,8 @@ const CountdownTimer = ({ targetDate, workStart = '09:30', workEnd = '18:30', pt
     return () => clearInterval(timer);
   }, [targetDate, workStart, workEnd, ptoDays]);
 
-  const isFinished = timeData.days === 0 && timeData.hours === 0 && timeData.minutes === 0 && timeData.seconds === 0;
+  // FIX 1: 移除 isFinished 中对 days 的判断
+  const isFinished = timeData.hours === 0 && timeData.minutes === 0 && timeData.seconds === 0;
 
   return (
     <div className={`countdown-container ${!timeData.isWorkingHours && !isFinished ? 'is-frozen' : ''}`} data-testid="timer-wrapper">
@@ -31,15 +32,14 @@ const CountdownTimer = ({ targetDate, workStart = '09:30', workEnd = '18:30', pt
           )}
         </h2>
       )}
-
-
-
       <div className="timer-display" data-testid="timer-display">
         {!isFinished ? (
-          ['days', 'hours', 'minutes', 'seconds'].map((unit) => (
+          // FIX 2: 从渲染数组中彻底删除 'days'
+          ['hours', 'minutes', 'seconds'].map((unit) => (
             <div key={unit} className="time-block" data-testid={`unit-${unit}`}>
               <span className="value" data-testid={`value-${unit}`}>
-                {timeData[unit].toString().padStart(2, '0')}
+                {/* 如果小时数破百甚至破千，我们不需要补零限制它的长度，直接展示震撼的数字 */}
+                {unit === 'hours' ? timeData[unit] : timeData[unit].toString().padStart(2, '0')}
               </span>
               <span className="label">{unit.toUpperCase()}</span>
             </div>
